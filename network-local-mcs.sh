@@ -78,6 +78,11 @@ info "Server - Install chaincode"
 
 export ORG=worker
 export COMPOSE_PROJECT_NAME=worker
+info "Worker - Install chaincode"
+./chaincode-install.sh cctasks
+./chaincode-install.sh cctaskpts
+./chaincode-install.sh ccreputations
+./chaincode-install.sh ccobservations
 info "Worker - Creating Channels"
 ./channel-create.sh observations
 info "Worker - Join Channels"
@@ -85,11 +90,7 @@ info "Worker - Join Channels"
 ./channel-join.sh tasks
 ./channel-join.sh taskpts
 ./channel-join.sh reputations
-info "Worker - Install chaincode"
-./chaincode-install.sh cctasks
-./chaincode-install.sh cctaskpts
-./chaincode-install.sh ccreputations
-./chaincode-install.sh ccobservations
+info "Worker - Instantiate chaincode"
 ./chaincode-instantiate.sh tasks cctasks '["init","a","10","b","0"]'
 ./chaincode-instantiate.sh taskpts cctaskpts '["init","a","10","b","0"]'
 ./chaincode-instantiate.sh reputations ccreputations '["init","a","10","b","0"]'
