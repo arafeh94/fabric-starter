@@ -69,6 +69,12 @@ info "Server - chaincode install"
 ./chaincode-install.sh cctaskpts
 ./chaincode-install.sh ccreputations
 ./chaincode-install.sh ccreports
+./chaincode-instantiate.sh users ccusers '["init","a","10","b","0"]'
+./chaincode-instantiate.sh tasks cctasks '["init","a","10","b","0"]'
+./chaincode-instantiate.sh taskpts cctaskpts '["init","a","10","b","0"]'
+./chaincode-instantiate.sh reputations ccreputations '["init","a","10","b","0"]'
+./chaincode-instantiate.sh reports ccreports '["init","a","10","b","0"]'
+
 
 info "Setting Up Worker Organization"
 export ORG=worker
@@ -93,3 +99,8 @@ info "Worker - chaincode install"
 ./chaincode-install.sh cctaskpts
 ./chaincode-install.sh ccreputations
 ./chaincode-install.sh ccobservations
+./chaincode-instantiate.sh tasks cctasks '["init","a","10","b","0"]'
+./chaincode-instantiate.sh taskpts cctaskpts '["init","a","10","b","0"]'
+./chaincode-instantiate.sh reputations ccreputations '["init","a","10","b","0"]'
+./chaincode-instantiate.sh observations ccobservations '["init","a","10","b","0"]'
+
