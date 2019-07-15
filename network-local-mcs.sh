@@ -68,6 +68,7 @@ info "Server - Install chaincode"
 ./chaincode-install.sh cctaskpts
 ./chaincode-install.sh ccreputations
 ./chaincode-install.sh ccreports
+info "Worker - Instantiate chaincode"
 ./chaincode-instantiate.sh users ccusers '["init","a","10","b","0"]'
 ./chaincode-instantiate.sh tasks cctasks '["init","a","10","b","0"]'
 ./chaincode-instantiate.sh taskpts cctaskpts '["init","a","10","b","0"]'
