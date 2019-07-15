@@ -85,6 +85,10 @@ info "Server - Install chaincode"
 ./chaincode-instantiate.sh reputations ccreputations '["init","a","10","b","0"]'
 ./chaincode-instantiate.sh reports ccreports '["init","a","10","b","0"]'
 
+
+
+export ORG=worker
+export COMPOSE_PROJECT_NAME=worker
 info "Worker - Creating Channels"
 ./channel-create.sh observations
 info "Worker - Join Channels"
