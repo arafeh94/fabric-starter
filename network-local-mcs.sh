@@ -4,10 +4,7 @@ function info() {
     echo -e "************************************************************\n\033[1;33m${1}\033[m\n************************************************************"
 }
 
-export DOMAIN=${DOMAIN-msg.com}
-
-orgs=${@:-org1}
-first_org=${1:-org1}
+export DOMAIN=${DOMAIN-mcs.com}
 
 docker_compose_args=${DOCKER_COMPOSE_ARGS:- -f docker-compose.yaml -f docker-compose-couchdb.yaml -f docker-compose-dev.yaml}
 
@@ -28,24 +25,16 @@ www_port=${WWW_PORT:-81}
 ca_port=${CA_PORT:-7054}
 peer0_port=${PEER0_PORT:-7051}
 
-export ORG=server API_PORT=${api_port} WWW_PORT=${www_port} PEER0_PORT=${peer0_port} CA_PORT=${ca_port}
+export ORG=server API_PORT=4000 WWW_PORT=81 PEER0_PORT=7051 CA_PORT=7054
 export COMPOSE_PROJECT_NAME=server
 info "Creating member organization server with api $API_PORT"
 docker-compose ${docker_compose_args} up -d
-api_port=$((api_port + 1))
-www_port=$((www_port + 1))
-ca_port=$((ca_port + 1))
-peer0_port=$((peer0_port + 1000))
 unset ORG COMPOSE_PROJECT_NAME API_PORT WWW_PORT PEER0_PORT CA_PORT
 
-export ORG=worker API_PORT=${api_port} WWW_PORT=${www_port} PEER0_PORT=${peer0_port} CA_PORT=${ca_port}
+export ORG=worker API_PORT=4001 WWW_PORT=82 PEER0_PORT=8051 CA_PORT=7055
 export COMPOSE_PROJECT_NAME=worker
 info "Creating member organization worker with api $API_PORT"
 docker-compose ${docker_compose_args} up -d
-api_port=$((api_port + 1))
-www_port=$((www_port + 1))
-ca_port=$((ca_port + 1))
-peer0_port=$((peer0_port + 1000))
 unset ORG COMPOSE_PROJECT_NAME API_PORT WWW_PORT PEER0_PORT CA_PORT
 
 
