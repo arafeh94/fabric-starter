@@ -31,7 +31,7 @@ info "Creating member organization server with api $API_PORT"
 docker-compose ${docker_compose_args} up -d
 unset ORG COMPOSE_PROJECT_NAME API_PORT WWW_PORT PEER0_PORT CA_PORT
 
-export ORG=worker API_PORT=4001 WWW_PORT=82 PEER0_PORT=8051 CA_PORT=7055
+export ORG=worker API_PORT=4001 WWW_PORT=82 PEER0_PORT=7051 CA_PORT=7055
 export COMPOSE_PROJECT_NAME=worker
 info "Creating member organization worker with api $API_PORT"
 docker-compose ${docker_compose_args} up -d
