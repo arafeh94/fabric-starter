@@ -37,37 +37,37 @@ info "Setting Up Server Organization"
 export ORG=server
 export COMPOSE_PROJECT_NAME=server
 
-info "channel: users"
+info "Server - channel: users"
 ./channel-create.sh users
 ./channel-join.sh users
 
 
-info "channel: tasks"
+info "Server - channel: tasks"
 ./channel-create.sh tasks
 ./channel-add-org.sh tasks worker
 ./channel-join.sh tasks
 
 
-info "channel: taskParticipants"
+info "Server - channel: taskParticipants"
 ./channel-create.sh taskParticipants
 ./channel-add-org.sh taskParticipants worker
 ./channel-join.sh taskParticipants
 
 
-info "channel: reputations"
+info "Server - channel: reputations"
 ./channel-create.sh reputations
 ./channel-add-org.sh reputations worker
 ./channel-join.sh reputations
 
-info "channel: observations"
+info "Server - channel: observations"
 ./channel-create.sh observations
 ./channel-add-org.sh observations worker
 
-info "channel: reports"
+info "Server - channel: reports"
 ./channel-create.sh reports
 ./channel-join.sh reports
 
-info "chaincode install"
+info "Server - chaincode install"
 ./chaincode-install.sh ccusers
 ./chaincode-instantiate.sh users ccusers
 
@@ -87,21 +87,21 @@ info "Setting Up Worker Organization"
 export ORG=worker
 export COMPOSE_PROJECT_NAME=worker
 
-info "channel: tasks"
+info "Worker - channel: tasks"
 ./channel-join.sh tasks
 
-info "channel: taskParticipants"
+info "Worker - channel: taskParticipants"
 ./channel-join.sh taskParticipants
 
 
-info "channel: reputations"
+info "Worker - channel: reputations"
 ./channel-join.sh reputations
 
-info "channel: observations"
+info "Worker - channel: observations"
 ./channel-join.sh observations
 
 
-info "chaincode install"
+info "Worker - chaincode install"
 ./chaincode-install.sh cctasks
 ./chaincode-instantiate.sh tasks cctasks
 
