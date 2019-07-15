@@ -47,11 +47,10 @@ info "Server - channel: tasks"
 ./channel-add-org.sh tasks worker
 ./channel-join.sh tasks
 
-
-info "Server - channel: taskParticipants"
-./channel-create.sh taskParticipants
-./channel-add-org.sh taskParticipants worker
-./channel-join.sh taskParticipants
+info "Server - channel: TaskParticipants"
+./channel-create.sh taskpts
+./channel-add-org.sh taskpts worker
+./channel-join.sh taskpts
 
 
 info "Server - channel: reputations"
@@ -59,9 +58,6 @@ info "Server - channel: reputations"
 ./channel-add-org.sh reputations worker
 ./channel-join.sh reputations
 
-info "Server - channel: observations"
-./channel-create.sh observations
-./channel-add-org.sh observations worker
 
 info "Server - channel: reports"
 ./channel-create.sh reports
@@ -69,19 +65,10 @@ info "Server - channel: reports"
 
 info "Server - chaincode install"
 ./chaincode-install.sh ccusers
-./chaincode-instantiate.sh users ccusers
-
 ./chaincode-install.sh cctasks
-./chaincode-instantiate.sh tasks cctasks
-
-./chaincode-install.sh cctaskparticipants
-./chaincode-instantiate.sh taskParticipants cctaskparticipants
-
+./chaincode-install.sh cctaskpts
 ./chaincode-install.sh ccreputations
-./chaincode-instantiate.sh reputations ccreputations
-
 ./chaincode-install.sh ccreports
-./chaincode-instantiate.sh reports ccreports
 
 info "Setting Up Worker Organization"
 export ORG=worker
@@ -91,25 +78,18 @@ info "Worker - channel: tasks"
 ./channel-join.sh tasks
 
 info "Worker - channel: taskParticipants"
-./channel-join.sh taskParticipants
-
+./channel-join.sh cctaskpts
 
 info "Worker - channel: reputations"
 ./channel-join.sh reputations
 
 info "Worker - channel: observations"
+./channel-create.sh observations
 ./channel-join.sh observations
 
 
 info "Worker - chaincode install"
 ./chaincode-install.sh cctasks
-./chaincode-instantiate.sh tasks cctasks
-
-./chaincode-install.sh cctaskparticipants
-./chaincode-instantiate.sh taskParticipants cctaskparticipants
-
+./chaincode-install.sh cctaskpts
 ./chaincode-install.sh ccreputations
-./chaincode-instantiate.sh reputations ccreputations
-
 ./chaincode-install.sh ccobservations
-./chaincode-instantiate.sh observations ccobservations
