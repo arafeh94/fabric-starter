@@ -77,8 +77,8 @@ export COMPOSE_PROJECT_NAME=worker
 info "Worker - channel: tasks"
 ./channel-join.sh tasks
 
-info "Worker - channel: taskParticipants"
-./channel-join.sh cctaskpts
+info "Worker - channel: TaskParticipants"
+./channel-join.sh taskpts
 
 info "Worker - channel: reputations"
 ./channel-join.sh reputations
