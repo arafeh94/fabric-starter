@@ -31,7 +31,7 @@ info "Creating member organization server with api $API_PORT"
 docker-compose ${docker_compose_args} up -d
 unset ORG COMPOSE_PROJECT_NAME API_PORT WWW_PORT PEER0_PORT CA_PORT
 
-export ORG=worker API_PORT=4001 WWW_PORT=82 PEER0_PORT=7051 CA_PORT=7055
+export ORG=worker API_PORT=4001 WWW_PORT=82 PEER0_PORT=8051 CA_PORT=7055
 export COMPOSE_PROJECT_NAME=worker
 info "Creating member organization worker with api $API_PORT"
 docker-compose ${docker_compose_args} up -d
@@ -68,12 +68,12 @@ info "Server - Install chaincode"
 ./chaincode-install.sh cctaskpts
 ./chaincode-install.sh ccreputations
 ./chaincode-install.sh ccreports
-info "Worker - Instantiate chaincode"
-./chaincode-instantiate.sh users ccusers '["init","a","10","b","0"]'
-./chaincode-instantiate.sh tasks cctasks '["init","a","10","b","0"]'
-./chaincode-instantiate.sh taskpts cctaskpts '["init","a","10","b","0"]'
-./chaincode-instantiate.sh reputations ccreputations '["init","a","10","b","0"]'
-./chaincode-instantiate.sh reports ccreports '["init","a","10","b","0"]'
+info "Server - Instantiate chaincode"
+./chaincode-instantiate.sh users ccusers
+./chaincode-instantiate.sh tasks cctasks
+./chaincode-instantiate.sh taskpts cctaskpts
+./chaincode-instantiate.sh reputations ccreputations
+./chaincode-instantiate.sh reports ccreports
 
 
 
@@ -91,9 +91,4 @@ info "Worker - Join Channels"
 ./channel-join.sh tasks
 ./channel-join.sh taskpts
 ./channel-join.sh reputations
-info "Worker - Instantiate chaincode"
-./chaincode-instantiate.sh tasks cctasks '["init","a","10","b","0"]'
-./chaincode-instantiate.sh taskpts cctaskpts '["init","a","10","b","0"]'
-./chaincode-instantiate.sh reputations ccreputations '["init","a","10","b","0"]'
-./chaincode-instantiate.sh observations ccobservations '["init","a","10","b","0"]'
 
