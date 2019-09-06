@@ -4,7 +4,7 @@ function info() {
     echo -e "************************************************************\n\033[1;33m${1}\033[m\n************************************************************"
 }
 
-export DOMAIN=${DOMAIN-example.com}
+export DOMAIN=${DOMAIN-mcs.com}
 
 orgs=${@:-org1}
 first_org=${1:-org1}
@@ -64,7 +64,6 @@ info "Creating channel ${channel} by $ORG"
 
 # First organization creates the chaincode
 
-info "Creating chaincode by $ORG: ${chaincode_install_args} ${chaincode_instantiate_args}"
-./chaincode-install.sh relationship
-./chaincode-instantiate.sh common relationship '["init","a","10","b","0"]'
+./chaincode-install.sh reference
+./chaincode-instantiate.sh common reference
 

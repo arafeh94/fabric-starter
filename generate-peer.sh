@@ -12,7 +12,6 @@ source lib.sh
 #[ -d "crypto-config/peerOrganizations/$ORG.$DOMAIN" ] && exit TODO: adjust for docker-machine
 
 IFS='.' read -r -a subDomains <<< ${DOMAIN}
-
 echo $DOMAIN
 if [ -z "$LDAP_BASE_DN" ]; then
     for subDomain in ${subDomains[@]}; do

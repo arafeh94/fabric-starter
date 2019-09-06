@@ -12,7 +12,8 @@
 	"engine-strict": true,
 	"license": "Apache-2.0",
 	"dependencies": {
-		"chaincode-node-storage": "git+https://git@github.com/olegabu/chaincode-node-storage.git",
-		"fabric-shim": "^1.2.0"
+    		"chaincode-node-storage": "git+https://git@github.com/arafeh94/chaincode-node-storage.git",
+		"fabric-shim": "^1.2.0",
+    		"ml-expectation-maximization": "^0.1.0"
 	}
 }

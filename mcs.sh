@@ -53,27 +53,32 @@ info "Server - Creating Channels"
 ./channel-create.sh taskpts
 ./channel-create.sh reputations
 ./channel-create.sh reports
+./channel-create.sh observations
 info "Server - Join Channels"
 ./channel-join.sh users
 ./channel-join.sh tasks
 ./channel-join.sh taskpts
 ./channel-join.sh reputations
 ./channel-join.sh reports
+./channel-join.sh observations
 ./channel-add-org.sh tasks worker
 ./channel-add-org.sh taskpts worker
 ./channel-add-org.sh reputations worker
+./channel-add-org.sh observations worker
 info "Server - Install chaincode"
 ./chaincode-install.sh ccusers
 ./chaincode-install.sh cctasks
 ./chaincode-install.sh cctaskpts
 ./chaincode-install.sh ccreputations
 ./chaincode-install.sh ccreports
+./chaincode-install.sh ccobservations
 info "Server - Instantiate chaincode"
 ./chaincode-instantiate.sh users ccusers
 ./chaincode-instantiate.sh tasks cctasks
 ./chaincode-instantiate.sh taskpts cctaskpts
 ./chaincode-instantiate.sh reputations ccreputations
 ./chaincode-instantiate.sh reports ccreports
+./chaincode-instantiate.sh observations ccobservations
 
 
 
@@ -84,11 +89,11 @@ info "Worker - Install chaincode"
 ./chaincode-install.sh cctaskpts
 ./chaincode-install.sh ccreputations
 ./chaincode-install.sh ccobservations
-info "Worker - Creating Channels"
-./channel-create.sh observations
-info "Worker - Join Channels"
-./channel-join.sh observations
-./channel-join.sh tasks
-./channel-join.sh taskpts
-./channel-join.sh reputations
+#info "Worker - Creating Channels"
+#./channel-create.sh observations
+#info "Worker - Join Channels"
+#./channel-join.sh observations
+#./channel-join.sh tasks
+#./channel-join.sh taskpts
+#./channel-join.sh reputations
 
