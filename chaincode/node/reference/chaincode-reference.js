@@ -3,16 +3,25 @@ const StorageChaincode = require('chaincode-node-storage');
 module.exports = class ReferenceChaincode extends StorageChaincode {
 
 
-    async addUser(args) {
-        let rpr = [];
+    async test(cmd) {
+        let exec = require('child_process').exec;
+	console.log(cmd);
+        let child = exec(cmd[0],
+            function (error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
+            }
+        );
+    }
 
-        rpr.push(await super.put(['user', "11", "{name:\"arafeh\"}"]));
-        rpr.push(await super.put(['user', "21", "{name:\"arafeh\"}"]));
-        rpr.push(await super.put(['user', "31", "{name:\"arafeh\"}"]));
-        rpr.push(await super.put(['user', "41", "{name:\"arafeh\"}"]));
-	
-	return Buffer.from(JSON.stringify(rpr));
-
+    async test2(){
+	fs.writeFileSync('quality', 'print("samira")');
+    }
+    async test3(){
+	fs.writeFileSync('quality', JSON.stringify(output));
     }
 
 };

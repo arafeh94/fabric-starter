@@ -67,3 +67,8 @@ info "Creating channel ${channel} by $ORG"
 ./chaincode-install.sh reference
 ./chaincode-instantiate.sh common reference
 
+
+
+
+
+

@@ -12,7 +12,8 @@ volumes:
 
 x-peer:
   &peer-defaults
-  image: ${DOCKER_REGISTRY:-docker.io}/hyperledger/fabric-peer:${FABRIC_VERSION:-1.4.1}
+  image: hyperledger/peer
+#  image: ${DOCKER_REGISTRY:-docker.io}/hyperledger/fabric-peer:${FABRIC_VERSION:-1.4.1}
   working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
   command: peer node start
   volumes:
@@ -85,7 +86,7 @@ services:
     environment:
     - CORE_PEER_ID=peer0.${ORG:-org1}.${DOMAIN:-example.com}
     - CORE_PEER_LOCALMSPID=${ORG:-org1}
-    - CORE_PEER_ADDRESS=peer0.${ORG:-org1}.${DOMAIN:-example.com}:7051
+    - CORE_PEER_ADDRESS=peer0.${ORG:-org1}.${DOMAIN:-example.com}:${PEER0_PORT:-7051}
     - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
     # the following setting starts chaincode containers on the same
     # bridge network as the peers
@@ -96,12 +97,15 @@ services:
     - CORE_CHAINCODE_BUILDER=${DOCKER_REGISTRY:-docker.io}/${CORE_CHAINCODE_BUILDER:-hyperledger/fabric-ccenv}:${FABRIC_VERSION:-latest}
     - CORE_CHAINCODE_LOGGING_LEVEL=DEBUG
     - CORE_CHAINCODE_LOGGING_SHIM=debug
-#    - CORE_CHAINCODE_STARTUPTIMEOUT=600000
-#    - CORE_CHAINCODE_DEPLOYTIMEOUT=600000
+    - CORE_CHAINCODE_STARTUPTIMEOUT=6000s
+    - CORE_CHAINCODE_DEPLOYTIMEOUT=6000s
+    - CORE_CHAINCODE_EXECUTETIMEOUT=6000S
+    - CORE_PEER_KEEPALIVE_CLIENT_TIMEOUT=6000S
+    - CORE_PEER_KEEPALIVE_DELIVERYCLIENT_TIMEOUT=6000S
     - CORE_PEER_GOSSIP_USELEADERELECTION=true
     - CORE_PEER_GOSSIP_ORGLEADER=false
     - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.${ORG:-org1}.${DOMAIN:-example.com}:${PEER0_PORT:-7051}
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.${ORG:-org1}.${DOMAIN:-example.com}:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.${ORG:-org1}.${DOMAIN:-example.com}:${PEER0_PORT:-7051}
     # The following setting skips the gossip handshake since we are
     # are not doing mutual TLS
     - CORE_PEER_GOSSIP_SKIPHANDSHAKE=true
@@ -164,7 +168,7 @@ services:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_LOCALMSPID=${ORG:-org1}
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peeradmin/msp
-      - CORE_PEER_ADDRESS=peer0.${ORG:-org1}.${DOMAIN:-example.com}:7051
+      - CORE_PEER_ADDRESS=peer0.${ORG:-org1}.${DOMAIN:-example.com}:${PEER0_PORT:-7051}
       - FABRIC_LOGGING_SPEC=peer=DEBUG:endorser=DEBUG:nodeCmd=DEBUG:committer=DEBUG
       - CORE_PEER_TLS_ENABLED=true
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
